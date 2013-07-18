@@ -1,0 +1,72 @@
+﻿<smil xmlns="http://www.w3.org/ns/SMIL" xmlns:epub="http://www.idpf.org/2007/ops" version="3.0">
+<body epub:textref="pg01.html" activeclass="mediaoverlay-active" src="audio/V13-CM-L1-HOP-LIKE-A-RABBIT.mp3" clipBegin="0" clipEnd="24.943">
+	<par>
+		<text src="pg01.html#chunk01"/>
+		<audio clipBegin="4.669" clipEnd="5.806"/>
+	</par>
+	<par>
+		<text src="pg01.html#chunk02"/>
+		<audio clipBegin="5.825" clipEnd="6.836"/>
+	</par>
+	<par>
+		<text src="pg01.html#chunk03"/>
+		<audio clipBegin="6.826" clipEnd="7.240"/>
+	</par>
+	<par>
+		<text src="pg01.html#chunk04"/>
+		<audio clipBegin="7.240" clipEnd="8.665"/>
+	</par>
+	<par>
+		<text src="pg01.html#chunk05"/>
+		<audio clipBegin="8.717" clipEnd="9.328"/>
+	</par>
+	<par>
+		<text src="pg01.html#chunk06"/>
+		<audio clipBegin="9.299" clipEnd="10.434"/>
+	</par>
+	<par>
+		<text src="pg01.html#chunk07"/>
+		<audio clipBegin="10.769" clipEnd="11.424"/>
+	</par>
+	<par>
+		<text src="pg01.html#chunk08"/>
+		<audio clipBegin="11.380" clipEnd="12.923"/>
+	</par>
+	<par>
+		<text src="pg01.html#chunk09"/>
+		<audio clipBegin="17.143" clipEnd="17.972"/>
+	</par>
+	<par>
+		<text src="pg01.html#chunk10"/>
+		<audio clipBegin="18.249" clipEnd="19.064"/>
+	</par>
+	<par>
+		<text src="pg01.html#chunk11"/>
+		<audio clipBegin="19.079" clipEnd="19.773"/>
+	</par>
+	<par>
+		<text src="pg01.html#chunk12"/>
+		<audio clipBegin="19.661" clipEnd="21.218"/>
+	</par>
+	<par>
+		<text src="pg01.html#chunk13"/>
+		<audio clipBegin="21.247" clipEnd="21.771"/>
+	</par>
+	<par>
+		<text src="pg01.html#chunk14"/>
+		<audio clipBegin="21.727" clipEnd="23.153"/>
+	</par>
+	<par>
+		<text src="pg01.html#chunk15"/>
+		<audio clipBegin="23.124" clipEnd="23.910"/>
+	</par>
+	<par>
+		<text src="pg01.html#chunk16"/>
+		<audio clipBegin="23.837" clipEnd="24.201"/>
+	</par>
+	<par>
+		<text src="pg01.html#chunk17"/>
+		<audio clipBegin="24.201" clipEnd="24.943"/>
+	</par>
+</body>
+</smil>
