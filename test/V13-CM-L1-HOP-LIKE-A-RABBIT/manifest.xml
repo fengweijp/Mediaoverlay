@@ -1,0 +1,11 @@
+<package>
+    <metadata>
+		<meta property="media:active-class">-epub-media-overlay-active</meta>
+	</metadata>
+	<manifest>
+		<item id="pg01" href="pg01.html" media-type="application/xhtml+xml" media-overlay="pg01_audio"/>
+		<item id="pg01_audio" href="pg01.smil" media-type="application/smil+xml"/>
+		<item id="pg02" href="pg02.html" media-type="application/xhtml+xml"/>
+		<item id="pg03" href="pg03.html" media-type="application/xhtml+xml"/>
+	</manifest>
+</package>	
