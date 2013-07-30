@@ -2,6 +2,6 @@
 	<spine>
 		<item id="pg01" href="pg01.html" mediaoverlay-href="pg01.smil"/>
 		<item id="pg02" href="pg02.html" />
-		<item id="pg03" href="pg03.html" /> 
+		<item id="pg03" href="pg03.html" />
 	</spine>
 </package>	

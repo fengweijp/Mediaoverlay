@@ -115,7 +115,7 @@
 		function play() {
 			if(_canPlay) {
 				startClipTimer();
-				_audioElement.currentTime = _page.pageBegin;
+				//_audioElement.currentTime = _page.pageBegin;
 				_audioElement.play();
 				notifyPageBegin(_page);
 			}
@@ -126,6 +126,7 @@
 				_audioElement.pause();
 				_audioElement.currentTime = 0;
 				if (_intervalId != null) clearInterval(_intervalId);
+				notifyClipEnd(_currentPar);
 			}
 		}
 		

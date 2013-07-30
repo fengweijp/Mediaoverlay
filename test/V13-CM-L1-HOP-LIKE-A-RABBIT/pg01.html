@@ -18,16 +18,28 @@ DONE manullay
   <head>
 	<title>Unit 1 - Hop Like a Rabbit</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<script src="js/jquery-2.0.3.js" type="application/javascript"></script>
 	<script src="js/underscore-1.5.1.js" type="application/javascript"></script>
+	<script src="js/bootstrap.min.js" type="application/javascript"></script>
 	<script src="js/domparser.js" type="application/javascript"></script>
 	<script src="js/mediaoverlay.js" type="application/javascript"></script>
-	<script src="js/player.js" type="application/javascript"></script>
+	<script src="js/playbutton.js" type="application/javascript"></script>
+	<script src="js/highlight.js" type="application/javascript"></script>
+	<script src="js/phonicshighlight.js" type="application/javascript"></script>
   </head>
   <style>
+	/* mediaoverlay active element */
 	.mediaoverlay-active {
 		color:red;
 	}
+
+	/* highlighted phonics element */
+	.phonicshighlight {
+		color: red;
+	}
+
+	/* book body */
 	body {
 		position: relative;
 		height: 1186px;
@@ -39,6 +51,7 @@ DONE manullay
 		-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
 		box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
 	}	
+	/* book page */
     .page {
 	  position: relative;
 	  height: 1136px;
@@ -101,49 +114,26 @@ DONE manullay
 <body>
   <div class="page">
 	<div class="line1 text">
-	  <span id="chunk01">Hop,</span>
-	  <span id="chunk02">hop,</span>
-	  <span id="chunk03">hop</span>
-	  <span id="chunk04">like a rabbit</span>
+	  <span id="chunk01">Hop,</span><span id="chunk02"> hop,</span><span id="chunk03"> hop</span> <span id="chunk04"> like a rabbit</span>
 	</div>
 	<div class="line2 text">
-	  <span id="chunk05">Hop</span>
-	  <span id="chunk06">like a rabbit</span>
-	  <span id="chunk07">with</span>
-	  <span id="chunk08">a friend.</span>
+	  <span id="chunk05">Hop</span><span id="chunk06"> like a rabbit</span><span id="chunk07"> with</span><span id="chunk08"> a friend.</span>
 	</div>
 	<div class="line3 text">
-	  <span id="chunk09">Climb,</span>
-	  <span id="chunk10">climb,</span>
-	  <span id="chunk11">climb</span>
-	  <span id="chunk12">like a monkey.</span>
+	  <span id="chunk09">Climb,</span><span id="chunk10"> climb,</span><span id="chunk11"> climb</span><span id="chunk12"> like a monkey.</span>
 	</div>
 	<div class="line4 text">
-	  <span id="chunk13">Climb</span>
-	  <span id="chunk14">like a monkey</span>
-	  <span id="chunk15">up</span>
-	  <span id="chunk16">a</span>
-	  <span id="chunk17">tree.</span>
+	  <span id="chunk13">Climb</span><span id="chunk14"> like a monkey</span><span id="chunk15"> up</span><span id="chunk16"> a</span><span id="chunk17"> tree.</span>
 	</div>
 	<div class="title">
-	  <span>Unit</span>
-	  <span>1</span>
-	  <span>-</span>
-	  <span>"Hop</span>
-	  <span>Like</span>
-	  <span>a</span>
-	  <span>Rabbit"</span>
+	  <span>Unit 1 - "Hop Like a Rabbit"</span>
 	</div>
 	<div class="copyright">
-	  <span>©</span>
-	  <span>2013</span>
-	  <span>GrapeSEED</span>
-	  <span>Media</span>
-	  <span>Limited</span>
+	  <span>©2013 GrapeSEED Media Limited</span>
 	</div>
 	<div class="pagenum">
 	  <span>1</span>
 	</div>
-</div>
+  </div> <!-- page -->
 </body>
 </html>
