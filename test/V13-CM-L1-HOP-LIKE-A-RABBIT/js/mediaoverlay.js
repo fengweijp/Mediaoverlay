@@ -58,17 +58,16 @@
 		var _canPlay;
 		var _intervalId;
 		var _currentPar;
+		var _onStateChanged;
 
 		function notify(state, stateObj) {
-			//if(state.indexOf("clip") === 0) 
-			//	console.log(state + " : " + stateObj.elementId);
-			//else 
-			//	console.log(state + " : " + stateObj.pageUrl);
-			
 			if(state.indexOf("clip_begin") === 0) 
 				$("#" + stateObj.elementId).addClass(_page.activeClass);
 			else if(state.indexOf("clip_end") === 0)
 				$("#" + stateObj.elementId).removeClass(_page.activeClass);
+				
+			if(_onStateChanged)
+				_onStateChanged(state, stateObj);
 		}
 		
 		function initialize(page, onload) {
@@ -81,6 +80,10 @@
 			_audioElement.setAttribute("src", page.audioFile);
 			_audioElement.load();
 			_audioElement.addEventListener("load", onloadListener(onload));
+		}
+		
+		function onStateChanged(fnOnStateChanged){
+			_onStateChanged = fnOnStateChanged;
 		}
 
 		function onloadListener(onload) {
@@ -200,7 +203,8 @@
 			pause: pause,
 			isPlaying: isPlaying,
 			play: play,
-			stop: stop
+			stop: stop,
+			onStateChanged: onStateChanged
 		};
 	}()); // player
 	

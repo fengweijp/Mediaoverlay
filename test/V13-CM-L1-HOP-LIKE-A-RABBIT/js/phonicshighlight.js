@@ -18,7 +18,8 @@ var PhonicsHighlight = (function(phonicsHighlight, jquery, underscore){
 	
 	function initialize(){
 		$("span").click(function(){
-			highlight();
+			if(!Mediaoverlay.player.isPlaying())
+				highlight();
 		});  
 	}
 	

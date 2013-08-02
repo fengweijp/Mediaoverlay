@@ -29,16 +29,27 @@
 		return $("#js-btn-play").html() == "Stop";
 	}
 	
+	function playerStateChanged(state, stateObj) {
+		if(state.indexOf("clip") === 0) 
+			console.log(state + " : " + stateObj.elementId);
+		else 
+			console.log(state + " : " + stateObj.pageUrl);
+			
+		if(state == "page_end")
+			endPlaying();
+	}
+	
 	// init page
 	function initPage() {
 		startSpinning();
 		
-		var promise = $.get('pg01.smil');
+		var promise = $.get('pg01.txt');
 		
 		promise.done(function(smilPage){
 			var page = Mediaoverlay.parseSmil(smilPage);
 			Mediaoverlay.player.initialize(page, function(){ // onload
 				endSpinning();
+				Mediaoverlay.player.onStateChanged(playerStateChanged);
 				initPlayButton();
 			});
 		});
