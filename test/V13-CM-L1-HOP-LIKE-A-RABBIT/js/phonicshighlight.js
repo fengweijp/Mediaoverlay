@@ -12,7 +12,7 @@ var PhonicsHighlight = (function(phonicsHighlight, jquery, underscore){
 			clickedChar = range.startContainer.textContent[range.startOffset];
 			console.log(clickedChar);
 			$(".page").removeHighlight();
-			$(".page").highlight(clickedChar);
+			$(".page .text").highlight(clickedChar);
 		}
 	}
 	
