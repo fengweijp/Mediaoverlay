@@ -35,19 +35,20 @@
 	
 	Mediaoverlay.parsePackage = function(packageXml){
 		var _xmldoc = XMLParser.load(packageXml, 'text/xml');
-		//TODO 
-		return {
-			pages: [{
-						pageUrl: 'pg01.html',
-						smilUrl: 'pg01.smil'
-					}, {
-						pageUrl: 'pg02.html',
-						smilUrl: 'pg02.smil'
-					}, {
-						pageUrl: 'pg03.html',
-						smilUrl: 'pg03.smil'
-					}]
-		};
+		var _spineElement = $("spine", _xmldoc.documentElement);
+		var _ret = [];
+		var _page;
+		var _smilPage;
+		_.forEach(_spineElement.children, function(item){
+			_page = item.attr('href');
+			_smilPage = item.attr('mediaoverlay-href');
+			ret.push({
+				pageUrl: _page,
+				smilUrl: _smilPage
+			})
+		});
+
+		return _ret;
 	};
 	
 	Mediaoverlay.parseSmil = parseSmil;
@@ -118,7 +119,7 @@
 		function play() {
 			if(_canPlay) {
 				startClipTimer();
-				//_audioElement.currentTime = _page.pageBegin;
+				_audioElement.currentTime = _page.pageBegin;
 				_audioElement.play();
 				notifyPageBegin(_page);
 			}

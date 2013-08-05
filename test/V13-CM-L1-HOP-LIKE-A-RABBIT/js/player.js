@@ -39,11 +39,30 @@
 			endPlaying();
 	}
 	
+	// initBook
+	function initBook(fnOnLoad) {
+		startSpinning();
+
+		var promise = $.get("package.xml");
+		
+		promise.done(function(packageXml){
+			var book = Mediaoverlay.parsePackage(packageXml);
+			endSpinning();
+			if(fnOnLoad)
+				fnOnLoad(book);
+		});
+		
+		promise.fail(function(){
+			console.log("Loading package.xml failed!");
+			endSpinning();
+		});
+	}
+	
 	// init page
-	function initPage() {
+	function initPage(pageSmil) {
 		startSpinning();
 		
-		var promise = $.get('pg01.txt');
+		var promise = $.get(pageSmil);
 		
 		promise.done(function(smilPage){
 			var page = Mediaoverlay.parseSmil(smilPage);
@@ -55,6 +74,7 @@
 		});
 		
 		promise.fail(function(){
+			console.log("Loading " + smilPage + " failed!");
 			endSpinning();
 		});
 	}
@@ -76,10 +96,9 @@
 		});		
 	}
 
-	$(document).ready(function() {
-		initPage();
-	});
-	
-	return player;
+	return {
+		initBook: initBook,
+		initPage: initPage
+	};
 }(Player || {}, $, _));
 

@@ -25,7 +25,7 @@ DONE manullay
 	<script src="js/bootstrap.min.js" type="application/javascript"></script>
 	<script src="js/domparser.js" type="application/javascript"></script>
 	<script src="js/mediaoverlay.js" type="application/javascript"></script>
-	<script src="js/playbutton.js" type="application/javascript"></script>
+	<script src="js/player.js" type="application/javascript"></script>
 	<script src="js/highlight.js" type="application/javascript"></script>
 	<script src="js/phonicshighlight.js" type="application/javascript"></script>
 	<style>
@@ -110,6 +110,11 @@ DONE manullay
 		  color: #ffffff;
 		}
 	</style>
+	<script>
+		$(document).ready(function() {
+			Player.initPage("pg01.txt");
+		});	
+	</script>
   </head>
 <body>
   <div class="page">
