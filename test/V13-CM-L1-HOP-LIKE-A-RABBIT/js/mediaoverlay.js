@@ -80,6 +80,7 @@
 			_audioElement = document.createElement('audio');
 			_audioElement.setAttribute("src", page.audioFile);
 			_audioElement.load();
+			// load, loadedmedatdate, canplaythrough
 			_audioElement.addEventListener("load", onloadListener(onload));
 		}
 		
@@ -119,8 +120,10 @@
 		function play() {
 			if(_canPlay) {
 				startClipTimer();
-				_audioElement.currentTime = _page.pageBegin;
 				_audioElement.play();
+				_.defer(function (){
+					_audioElement.currentTime = _page.pageBegin; 
+				});
 				notifyPageBegin(_page);
 			}
 		}
