@@ -197,6 +197,9 @@
 						_currentPar = par;
 						break;
 					}
+					else if(_currentPar && _audioElement.currentTime > _currentPar.clipEnd){
+						notifyClipEnd(_currentPar);
+					}
 				}
 			}, 25);   
 		}

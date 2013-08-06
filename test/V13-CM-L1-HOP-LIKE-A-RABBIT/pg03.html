@@ -1,111 +1,133 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!DOCTYPE HTML>
 <html>
+
 <head>
-<title>pg00003</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<style>
-<!-- 
-body { background:#ffffff;}
-a:link {text-decoration: none; color: blue}
-a:visited {text-decoration: none; color: purple}
-a:active {text-decoration: none; color: red}
-a:hover {text-decoration: none; color:red}
--->
-</style>
-<script type="text/javascript"> 
-<!-- hide 
-function deserrs()
-{ 
-return true; 
-} 
-window.onerror = deserrs; 
-// --> 
-</script>
+	<title>Unit 1 - Hop Like a Rabbit</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+	<script src="js/jquery-2.0.3.js" type="application/javascript"></script>
+	<script src="js/underscore-1.5.1.js" type="application/javascript"></script>
+	<script src="js/bootstrap.min.js" type="application/javascript"></script>
+	<script src="js/domparser.js" type="application/javascript"></script>
+	<script src="js/mediaoverlay.js" type="application/javascript"></script>
+	<script src="js/player.js" type="application/javascript"></script>
+	<script src="js/highlight.js" type="application/javascript"></script>
+	<script src="js/phonicshighlight.js" type="application/javascript"></script>
+	<style>
+		/* mediaoverlay active element */
+		.mediaoverlay-active {
+			color:red;
+		}
+
+		/* highlighted phonics element */
+		.phonicshighlight {
+			color: red;
+		}
+
+		/* book body */
+		body {
+			position: relative;
+			height: 1186px;
+			width: 1657px;
+			padding: 50px;
+			margin: 0 auto;
+			background-color: #fff;
+			-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+			-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+			box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+		}	
+		/* book page */
+		.page {
+		  position: relative;
+		  height: 1136px;
+		  width: 1607px;
+		  background: url('img/bg00003.jpg')
+		}
+		@font-face {
+		  font-family: abcprint;
+		  src: url('font/font.ttf')
+		}
+		.text{
+		  font-size: 37.75px;
+		  color: #1f1a1a;
+		  font-family: abcprint;
+		  font-weight:800;
+		}
+		.line1 {
+		  position:absolute;
+		  top:146px;
+		  left:141px;
+		}
+		.line2 {
+		  position:absolute;
+		  top:212px;
+		  left:141px;
+		}
+		.line3 {
+		  position:absolute;
+		  top:898px;
+		  left:857px;
+		}
+		.line4 {
+		  position:absolute;
+		  top:964px;
+		  left:857px
+		}
+		.title {
+		  position: absolute;
+		  top: 1052px;
+		  left: 1230px;
+		  font-size: 14.8px;
+		  color: #4f4c4d;
+		}
+		.copyright {
+		  position: absolute;
+		  top: 1073px;
+		  left: 1200px;
+		  font-size: 10.8px;
+		  color: #4f4c4d;
+		}
+		.pagenum {
+		  position: absolute;
+		  top: 1060px;
+		  left: 1529px;
+		  font-size: 22.7px;
+		  color: #ffffff;
+		}
+	</style>
+	<script>
+		$(document).ready(function() {
+			Player.initPage("pg03.txt");
+		});	
+	</script>
 </head>
+
 <body>
-<script type="text/javascript">
-var currentpos,timer; 
-function initialize() 
-{ 
-timer=setInterval("scrollwindow()",10);
-} 
-function sc(){
-clearInterval(timer); 
-}
-function scrollwindow() 
-{ 
-currentpos=document.body.scrollTop; 
-window.scroll(0,++currentpos); 
-if (currentpos != document.body.scrollTop) 
-sc();
-} 
-document.onmousedown = sc;
-document.ondblclick = initialize;
-var tmp = "<div style=\"position:absolute; top:" + parent.offsetY + "; left:" + parent.offsetX + ";height:1136px; width:1607px\">";
-document.writeln(tmp);
-</script>
-<table border="0" height="1136" width="1607">
-<tr><td>
-<div style="position:absolute; top:0; left:0;"><img height="1136" width="1607" src="img/bg00003.jpg"/></div>
-<div style="position:absolute;top:146.353;left:140.639;"><nobr>
-<span style="font-size:37.750;color: #1f1a1a;">Run,</span>
-<span style="font-size:37.750;color: #1f1a1a;">run,</span>
-<span style="font-size:37.750;color: #1f1a1a;">run</span>
-<span style="font-size:37.750;color: #1f1a1a;">like</span>
-<span style="font-size:37.750;color: #1f1a1a;">a</span>
-<span style="font-size:37.750;color: #1f1a1a;">zebra.</span>
-</nobr></div>
-<div style="position:absolute;top:212.415;left:140.639;"><nobr>
-<span style="font-size:37.750;color: #1f1a1a;">Run</span>
-<span style="font-size:37.750;color: #1f1a1a;">like</span>
-<span style="font-size:37.750;color: #1f1a1a;">a</span>
-<span style="font-size:37.750;color: #1f1a1a;">zebra</span>
-<span style="font-size:37.750;color: #1f1a1a;">at</span>
-<span style="font-size:37.750;color: #1f1a1a;">the</span>
-<span style="font-size:37.750;color: #1f1a1a;">zoo.</span>
-</nobr></div>
-<div style="position:absolute;top:897.959;left:857.079;"><nobr>
-<span style="font-size:37.750;color: #1f1a1a;">Walk,</span>
-<span style="font-size:37.750;color: #1f1a1a;">walk,</span>
-<span style="font-size:37.750;color: #1f1a1a;">walk</span>
-<span style="font-size:37.750;color: #1f1a1a;">like</span>
-<span style="font-size:37.750;color: #1f1a1a;">an</span>
-<span style="font-size:37.750;color: #1f1a1a;">elephant.</span>
-</nobr></div>
-<div style="position:absolute;top:964.022;left:857.079;"><nobr>
-<span style="font-size:37.750;color: #1f1a1a;">Walk</span>
-<span style="font-size:37.750;color: #1f1a1a;">like</span>
-<span style="font-size:37.750;color: #1f1a1a;">an</span>
-<span style="font-size:37.750;color: #1f1a1a;">elephant.</span>
-<span style="font-size:37.750;color: #1f1a1a;">And</span>
-<span style="font-size:37.750;color: #1f1a1a;">stop!</span>
-</nobr></div>
-<div style="position:absolute;top:1062.732;left:1342.806;"><nobr>
-<span style="font-size:14.830;color: #4f4c4d;">Unit</span>
-<span style="font-size:14.830;color: #4f4c4d;">1</span>
-<span style="font-size:14.830;color: #4f4c4d;">-</span>
-<span style="font-size:14.830;color: #4f4c4d;">"Hop</span>
-<span style="font-size:14.830;color: #4f4c4d;">Like</span>
-<span style="font-size:14.830;color: #4f4c4d;">a</span>
-<span style="font-size:14.830;color: #4f4c4d;">Rabbit"</span>
-</nobr></div>
-<div style="position:absolute;top:1083.438;left:1333.886;"><nobr>
-<span style="font-size:10.786;color: #4f4c4d;">©</span>
-<span style="font-size:10.786;color: #4f4c4d;">2013</span>
-<span style="font-size:10.786;color: #4f4c4d;">GrapeSEED</span>
-<span style="font-size:10.786;color: #4f4c4d;">Media</span>
-<span style="font-size:10.786;color: #4f4c4d;">Limited</span>
-</nobr></div>
-<div style="position:absolute;top:1067.592;left:1545.546;"><nobr>
-<span style="font-size:22.665;color: #ffffff;">3</span>
-</nobr></div>
-</td></tr>
-</table>
-</div>
-<script type="text/javascript">
-var currentZoom = parent.toolbarWin.currentZoom;
-if(currentZoom != undefined)
-document.body.style.zoom=currentZoom/100;
-</script>
+  <div class="page">
+	<div class="line1 text">
+	  <span id="chunk01">Run,</span><span id="chunk02"> run,</span><span id="chunk03"> run </span><span id="chunk04"> like a zebra</span>
+	</div>
+	<div class="line2 text">
+	  <span id="chunk05">Run</span><span id="chunk06"> like a zebra</span><span id="chunk07"> at the zoo.</span>
+	</div>
+	<div class="line3 text">
+	   <span id="chunk08">Walk,</span><span id="chunk09"> walk,</span><span id="chunk10"> walk</span><span id="chunk11"> like an elephant.</span>
+	</div>
+	<div class="line4 text">
+	   <span id="chunk12">Walk</span><span id="chunk13"> like an elephant.</span><span id="chunk14"> And stop!.</span>
+	</div>
+	
+	<div class="title">
+	  <span>Unit 1 - "Hop Like a Rabbit"</span>
+	</div>
+	<div class="copyright">
+	  <span>©2013 GrapeSEED Media Limited</span>
+	</div>
+	<div class="pagenum">
+	  <span>3</span>
+	</div>
+  </div> <!-- page --> 
 </body>
+
 </html>
+<
