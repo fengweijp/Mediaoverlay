@@ -1,0 +1,149 @@
+﻿<!DOCTYPE HTML>
+<html>
+<!-- 
+TODO
+1. 1024*768 for iPad size
+2. Landscape & Portrait device rotation
+
+DONE automatically
+1. Separate image and text
+2. Location of text
+
+DONE manullay
+1. <title>
+2. inline style to css: .page, .line, etc
+3. font face (abcprint)
+4. document structure change: table=>div, add identifier for mediaoverlay
+5. smil&manifest file creation
+-->
+  <head>
+	<title>Unit 1 - Let's Clean Up</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+	<script src="js/jquery-2.0.3.js" type="application/javascript"></script>
+	<script src="js/underscore-1.5.1.js" type="application/javascript"></script>
+	<script src="js/bootstrap.min.js" type="application/javascript"></script>
+	<script src="js/domparser.js" type="application/javascript"></script>
+	<script src="js/mediaoverlay.js" type="application/javascript"></script>
+	<script src="js/player.js" type="application/javascript"></script>
+	<script src="js/highlight.js" type="application/javascript"></script>
+	<script src="js/phonicshighlight.js" type="application/javascript"></script>
+	<style>
+		/* mediaoverlay active element */
+		.mediaoverlay-active {
+			color:red;
+		}
+
+		/* highlighted phonics element */
+		.phonicshighlight {
+			color: red;
+		}
+
+		/* book body */
+		body {
+			position: relative;
+			height: 1186px;
+			width: 1657px;
+			padding: 50px;
+			margin: 0 auto;
+			background-color: #fff;
+			-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+			-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+			box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+		}	
+		/* book page */
+		.page {
+		  position: relative;
+		  height: 1136px;
+		  width: 1607px;
+		  background: url('img/bg00001.jpg')
+		}
+		@font-face {
+		  font-family: abcprint;
+		  src: url('font/font.ttf')
+		}
+		.text{
+		  font-size: 37.75px;
+		  color: #1f1a1a;
+		  font-family: abcprint;
+		  font-weight:800;
+		}
+		.line1 {
+		  position: absolute;
+		  top: 213.615px;
+		  left: 110.065px;
+		}
+		.line2 {
+		  position: absolute;
+		  top: 279.678px;
+		  left: 110.065px;
+		}
+		.line3 {
+		  position: absolute;
+		  top: 345.741px;
+		  left: 110.065px;
+		}
+		.line4 {
+		  position: absolute;
+		  top: 411.803px;
+		  left: 110.065px;
+		}
+		.line5 {
+		  position: absolute;
+		  top: 477.866px;
+		  left: 110.065px;
+		}
+		.title {
+		  position: absolute;
+		  top: 1052px;
+		  left: 1230px;
+		  font-size: 14.8px;
+		  color: #4f4c4d;
+		}
+		.copyright {
+		  position: absolute;
+		  top: 1073px;
+		  left: 1200px;
+		  font-size: 10.8px;
+		  color: #4f4c4d;
+		}
+		.pagenum {
+		  position: absolute;
+		  top: 1058px;
+		  left: 1530px;
+		  font-size: 22.7px;
+		  color: #ffffff;
+		}
+	</style>
+	<script>
+		$(document).ready(function() {
+			Player.initPage("pg01.txt");
+		});	
+	</script>
+  </head>
+<body>
+  <div class="page">
+	<div class="line1 text">
+	  <span id="chunk01">Let's</span><span id="chunk02"> clean up</span><span id="chunk03"> while</span><span id="chunk04"> we sing.</span>
+	</div>
+	<div class="line2 text">
+	  <span id="chunk05">We</span><span id="chunk06"> pick</span><span id="chunk07"> up</span><span id="chunk08"> toys</span><span id="chunk09"> and</span><span id="chunk10"> all</span><span id="chunk11"> our things.</span>
+	</div>
+	<div class="line3 text">
+      <span id="chunk12">We will</span><span id="chunk13"> work</span><span id="chunk14"> with a friend.</span>
+	</div>
+	<div class="line4 text">
+      <span id="chunk15">I'm glad that</span><span id="chunk16"> friend is you.</span>
+	</div>
+	<div class="line5 text">
+      <span id="chunk17">Cleaning</span><span id="chunk18"> up</span><span id="chunk19"> is</span><span id="chunk20"> fun</span><span id="chunk21"> to do!</span>
+	</div>
+	<div class="title">
+	  <span>Unit 1 - "Let's Clean Up"</span>
+	</div>
+	<div class="copyright">
+	  <span>©2013 GrapeSEED Media Limited</span>
+	</div>
+  </div> <!-- page -->
+</body>
+</html>
