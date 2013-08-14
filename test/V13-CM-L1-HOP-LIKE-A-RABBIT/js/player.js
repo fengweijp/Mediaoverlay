@@ -30,10 +30,10 @@
 	}
 	
 	function playerStateChanged(state, stateObj) {
-		if(state.indexOf("clip") === 0) 
-			console.log(state + " : " + stateObj.elementId);
-		else 
-			console.log(state + " : " + stateObj.pageUrl);
+		//if(state.indexOf("clip") === 0) 
+		//	console.log(state + " : " + stateObj.elementId);
+		//else 
+		//	console.log(state + " : " + stateObj.pageUrl);
 			
 		if(state == "page_end")
 			endPlaying();
