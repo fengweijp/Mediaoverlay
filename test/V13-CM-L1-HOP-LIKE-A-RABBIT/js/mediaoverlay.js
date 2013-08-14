@@ -6,6 +6,18 @@
 
 	function parseSmil(smilPage) {
 		var _xmldoc = XMLParser.load(smilPage, 'text/xml');
+		if(_xmldoc.parseError) { // IE
+			console.log(_xmldoc.parseError);
+			console.log("Parse smil file error!");
+			return;
+		}
+		
+		var parseErrorElement = _xmldoc.getElementsByTagName("parsererror");
+		if(parseErrorElement.length > 0) { // chrome
+			console.log(parseErrorElement[0]);
+			console.log("Parse smil file error!");
+		}
+		
 		var _bodyElement = $("body", _xmldoc.documentElement);
 		var _pageUrl = _bodyElement.attr('epub:textref');
 		var _activeClass = _bodyElement.attr('activeclass');
@@ -62,10 +74,16 @@
 		var _onStateChanged;
 
 		function notify(state, stateObj) {
-			if(state.indexOf("clip_begin") === 0) 
+			if(state.indexOf("clip_begin") === 0) {
+				console.log("clip_begin");
+				console.log(stateObj);	
 				$("#" + stateObj.elementId).addClass(_page.activeClass);
-			else if(state.indexOf("clip_end") === 0)
+			}
+			else if(state.indexOf("clip_end") === 0) {
+				console.log("clip_end");
+				console.log(stateObj);	
 				$("#" + stateObj.elementId).removeClass(_page.activeClass);
+			}
 				
 			if(_onStateChanged)
 				_onStateChanged(state, stateObj);
@@ -76,9 +94,11 @@
 			_page = page;
 			_currentPar = null;
 
-			//_audioElement = new Audio();
+			_audioElement = new Audio();
 			_audioElement = document.createElement('audio');
 			_audioElement.setAttribute("src", page.audioFile);
+			_audioElement.controls = true;
+			$("body").append($(_audioElement));
 			_audioElement.load();
 			// load, loadedmedatdate, canplaythrough
 			_audioElement.addEventListener("load", onloadListener(onload));
@@ -118,6 +138,11 @@
 		}
 		
 		function play() {
+			if(_audioElement.error){
+				console.log(_audioElement.error);
+				return;
+			}			
+
 			if(_canPlay) {
 				startClipTimer();
 				_audioElement.play();
@@ -181,8 +206,11 @@
 					par = _page.pars[i];
 					if( _audioElement.currentTime >= par.clipBegin && 
 						_audioElement.currentTime <= par.clipEnd) {
+						par.audioCurrentTime = _audioElement.currentTime;
 						
 						if(_currentPar && _currentPar != par && _audioElement.currentTime > _currentPar.clipEnd) {
+							_currentPar.from = "line 209";
+							_currentPar.audioCurrentTime = _audioElement.currentTime;
 							notifyClipEnd(_currentPar);
 						}
 
@@ -197,11 +225,12 @@
 						_currentPar = par;
 						break;
 					}
-					else if(_currentPar && _audioElement.currentTime > _currentPar.clipEnd){
-						notifyClipEnd(_currentPar);
-					}
+					//else if(_currentPar && _audioElement.currentTime > _currentPar.clipEnd){
+					//	_currentPar.from = "line 226";
+					//	notifyClipEnd(_currentPar);
+					//}
 				}
-			}, 25);   
+			}, 20);   
 		}
 		
 		return {
