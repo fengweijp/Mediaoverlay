@@ -3,8 +3,36 @@
 	var XMLParser = xmlParser;
 	var $ = jquery;
 	var _ = underscore;
+	
+	Mediaoverlay.getURLParam = function getURLParameters(paramName) {
+		var sURL = window.document.URL.toString();
+		if (sURL.indexOf("?") > 0) {
+			var arrParams = sURL.split("?");
+			var arrURLParams = arrParams[1].split("&");
+			var params = [];
 
-	function parseSmil(smilPage) {
+			var i = 0;
+			var param;
+			var paramPair;
+			for (i=0;i<arrURLParams.length;i++) {
+				paramPair =  arrURLParams[i].split("=");
+				param = {};
+				param.name = paramPair[0];
+				if (paramPair[1])
+					param.value = unescape(paramPair[1]);
+				else
+					param.value = undefined;
+					
+				params.push(param);
+			}
+		}
+		
+		return _.find(params, function(param){
+			return param.name == paramName;
+		});
+	}
+
+	Mediaoverlay.parseSmil = function parseSmil(smilPage) {
 		var _xmldoc = XMLParser.load(smilPage, 'text/xml');
 		if(_xmldoc.parseError) { // IE
 			console.log(_xmldoc.parseError);
@@ -65,8 +93,6 @@
 		return _ret;
 	};
 	
-	Mediaoverlay.parseSmil = parseSmil;
-	
 	Mediaoverlay.player = (function(){
 		var _page;
 		var _audioElement;
@@ -80,97 +106,24 @@
 				console.log("clip_begin");
 				console.log(stateObj);	
 				$("#" + stateObj.elementId).addClass(_page.activeClass);
+				$("#" + stateObj.elementId).attr("parindex", getParIndex(stateObj));
 			}
 			else if(state.indexOf("clip_end") === 0) {
 				console.log("clip_end");
 				console.log(stateObj);	
 				$("#" + stateObj.elementId).removeClass(_page.activeClass);
+				$("#" + stateObj.elementId).removeAttr("parindex");
 			}
 				
 			if(_onStateChanged)
 				_onStateChanged(state, stateObj);
 		}
 		
-		function initialize(page, onload) {
-			// save page
-			_page = page;
-			_currentPar = null;
-
-			_audioElement = new Audio();
-			_audioElement = document.createElement('audio');
-			_audioElement.setAttribute("src", page.audioFile);
-			_audioElement.setAttribute("preload", "auto");
-			_audioElement.controls = true;
-			$("body").append($(_audioElement));
-
-			_audioElement.load();
-			// load, loadedmedatdate, canplaythrough
-			_audioElement.addEventListener("load", onloadListener(onload));
-		}
-		
-		function onStateChanged(fnOnStateChanged){
-			_onStateChanged = fnOnStateChanged;
-		}
-
-		function onloadListener(onload) {
-			_canPlay = true;
-			_audioElement.removeEventListener("load", onloadListener);
-			
-			if(_.isFunction(onload)) _.delay(onload, 1000, [_page]);
-		}
-		
-		function clean() {
-			if (_intervalId != null) clearInterval(_intervalId);
-			_audioElement = null;
-		}
-
-		function isPlaying() {
-			if(!_audioElement)
-				return false;
-			
-			return _canPlay && !_audioElement.paused;
-		}
-		
-		function pause() {
-			if(_audioElement)
-				_audioElement.pause();
-		}
-		
-		function resume() {
-			if(_audioElement)
-				_audioElement.play();
-		}
-		
-		function play() {
-			if(_audioElement.error){
-				console.log(_audioElement.error);
-				return;
-			}			
-
-			if(_canPlay) {
-				startClipTimer();
-				_audioElement.play();
-				_.defer(function (){
-					_audioElement.currentTime = _page.pageBegin; 
-				});
-				notifyPageBegin(_page);
-			}
-		}
-
-		function stop() {
-			if(_audioElement) {
-				_audioElement.pause();
-				_audioElement.currentTime = 0;
-				if (_intervalId != null) clearInterval(_intervalId);
-				notifyClipEnd(_currentPar);
-			}
-		}
-		
-		function notifyPageBegin(page){
+		function notifyPageBegin(page) {
 			notify("page_begin", page);
 		}
 
-		function notifyPageEnd(page){
+		function notifyPageEnd(page) {
 			notify("page_end", page);
 		}
 		
@@ -186,6 +139,33 @@
 			notify("clip_end", par);
 		}
 		
+		function getParIndex(par) {
+			return _.indexOf(_page.pars, par);
+		}
+		
+		function onloadListener(onload) {
+			_canPlay = true;
+			_audioElement.removeEventListener("load", onloadListener);
+			
+			seekToPageBegin(onload);
+		}
+		
+		function seekToPageBegin(onload){
+			try {
+				_audioElement.muted = true;
+				_audioElement.play();
+				_.delay(function(){
+					_audioElement.currentTime = _page.pageBegin;
+					_audioElement.pause();
+					_audioElement.muted = false;
+
+					if(_.isFunction(onload)) _.delay(onload, 250, [_page]);
+				}, 1000);
+			} catch(e) {
+				console.log(e);
+			}
+		}
+
 		function startClipTimer() {
 			// cancel the old timer, if any
 			if (_intervalId != null) {
@@ -235,6 +215,79 @@
 					//}
 				}
 			}, 20);   
+		}
+		
+		function initialize(page, onload) {
+			// save page
+			_page = page;
+			_currentPar = null;
+
+			_audioElement = new Audio();
+			_audioElement = document.createElement('audio');
+			_audioElement.setAttribute("src", page.audioFile);
+			_audioElement.setAttribute("preload", "auto");
+			
+			if(Mediaoverlay.getURLParam("debug")) {
+				_audioElement.controls = true;
+				$("body").append($(_audioElement));
+			}
+
+			_audioElement.load();
+			// load, loadedmedatdate, canplaythrough
+			_audioElement.addEventListener("load", onloadListener(onload)); // load
+		}
+		
+		function clean() {
+			if (_intervalId != null) 
+				clearInterval(_intervalId);
+			
+			_audioElement = null;
+		}
+
+		function isPlaying() {
+			if(!_audioElement)
+				return false;
+			
+			return _canPlay && !_audioElement.paused;
+		}
+		
+		function pause() {
+			if(_audioElement)
+				_audioElement.pause();
+		}
+		
+		function resume() {
+			if(_audioElement)
+				_audioElement.play();
+		}
+		
+		function play() {
+			if(_audioElement.error) {
+				console.log(_audioElement.error);
+				return;
+			}			
+
+			if(_canPlay) {
+				startClipTimer();
+				_audioElement.play();
+				//_.defer(function (){
+				//	_audioElement.currentTime = _page.pageBegin; 
+				//});
+				notifyPageBegin(_page);
+			}
+		}
+
+		function stop() {
+			if(_audioElement) {
+				_audioElement.pause();
+				_audioElement.currentTime = 0;
+				if (_intervalId != null) clearInterval(_intervalId);
+				notifyClipEnd(_currentPar);
+			}
+		}
+
+		function onStateChanged(fnOnStateChanged){
+			_onStateChanged = fnOnStateChanged;
 		}
 		
 		return {

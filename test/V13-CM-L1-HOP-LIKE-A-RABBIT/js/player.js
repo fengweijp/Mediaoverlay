@@ -1,7 +1,8 @@
-﻿var Player = (function(player, jquery, underscore){
+﻿var Player = (function(player, tracker, jquery, underscore){
 	var $ = jquery;
 	var _ = underscore;
 	var _spinner = null;
+	var _tracker = tracker;
 	
 	// spinning
 	function startSpinning(){
@@ -66,6 +67,9 @@
 		
 		promise.done(function(smilPageXml){
 			var page = Mediaoverlay.parseSmil(smilPageXml);
+			
+			_tracker.initialize(page);
+			
 			Mediaoverlay.player.initialize(page, function(){ // onready
 				endSpinning();
 				Mediaoverlay.player.onStateChanged(playerStateChanged);
@@ -100,5 +104,5 @@
 		initBook: initBook,
 		initPage: initPage
 	};
-}(Player || {}, $, _));
+}(Player || {}, Tracker, $, _));
 
