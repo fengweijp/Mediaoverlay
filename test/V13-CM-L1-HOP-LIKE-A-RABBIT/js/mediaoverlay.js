@@ -35,7 +35,7 @@
 			};
 		});
 		
-		return {
+		Mediaoverlay.smilPage = {
 			activeClass: _activeClass,
 			pageUrl: _pageUrl,
 			audioFile: _audioFile,
@@ -43,6 +43,8 @@
 			pageEnd: _pageEnd,
 			pars: _pars
 		};
+		
+		return Mediaoverlay.smilPage;
 	}
 	
 	Mediaoverlay.parsePackage = function(packageXml){
@@ -97,8 +99,10 @@
 			_audioElement = new Audio();
 			_audioElement = document.createElement('audio');
 			_audioElement.setAttribute("src", page.audioFile);
+			_audioElement.setAttribute("preload", "auto");
 			_audioElement.controls = true;
 			$("body").append($(_audioElement));
+
 			_audioElement.load();
 			// load, loadedmedatdate, canplaythrough
 			_audioElement.addEventListener("load", onloadListener(onload));

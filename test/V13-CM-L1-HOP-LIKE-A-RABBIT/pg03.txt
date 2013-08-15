@@ -1,5 +1,5 @@
 <smil xmlns="http://www.w3.org/ns/SMIL" xmlns:epub="http://www.idpf.org/2007/ops" version="3.0">
-<body epub:textref="pg03.html" activeclass="mediaoverlay-active" src="audio/V13-CM-L1-HOP-LIKE-A-RABBIT.MP3" clipBegin="66.697" clipEnd="87.417">
+<body epub:textref="pg03.html" activeclass="mediaoverlay-active" src="audio/V13-CM-L1-HOP-LIKE-A-RABBIT.mp3" clipBegin="66.697" clipEnd="87.417">
 	<par>
 		<text src="pg03.html#chunk01"/>
 		<audio clipBegin="66.697" clipEnd="67.486"/>

@@ -64,9 +64,9 @@
 		
 		var promise = $.get(pageSmil);
 		
-		promise.done(function(smilPage){
-			var page = Mediaoverlay.parseSmil(smilPage);
-			Mediaoverlay.player.initialize(page, function(){ // onload
+		promise.done(function(smilPageXml){
+			var page = Mediaoverlay.parseSmil(smilPageXml);
+			Mediaoverlay.player.initialize(page, function(){ // onready
 				endSpinning();
 				Mediaoverlay.player.onStateChanged(playerStateChanged);
 				initPlayButton();
