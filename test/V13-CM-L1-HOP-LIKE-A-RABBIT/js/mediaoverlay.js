@@ -3,6 +3,7 @@
 	var XMLParser = xmlParser;
 	var $ = jquery;
 	var _ = underscore;
+	var _seekErrors = 0;
 	
 	Mediaoverlay.getURLParam = function getURLParameters(paramName) {
 		var sURL = window.document.URL.toString();
@@ -103,14 +104,20 @@
 
 		function notify(state, stateObj) {
 			if(state.indexOf("clip_begin") === 0) {
-				console.log("clip_begin");
-				console.log(stateObj);	
+				if(Mediaoverlay.getURLParam("debug")) {
+					console.log("clip_begin");
+					console.log(stateObj);	
+				}
+				
 				$("#" + stateObj.elementId).addClass(_page.activeClass);
 				$("#" + stateObj.elementId).attr("parindex", getParIndex(stateObj));
 			}
 			else if(state.indexOf("clip_end") === 0) {
-				console.log("clip_end");
-				console.log(stateObj);	
+				if(Mediaoverlay.getURLParam("debug")) {
+					console.log("clip_end");
+					console.log(stateObj);	
+				}
+				
 				$("#" + stateObj.elementId).removeClass(_page.activeClass);
 				$("#" + stateObj.elementId).removeAttr("parindex");
 			}
@@ -146,24 +153,29 @@
 		function onloadListener(onload) {
 			_canPlay = true;
 			_audioElement.removeEventListener("load", onloadListener);
+			_seekErrors = 0;
 			
 			seekToPageBegin(onload);
 		}
 		
 		function seekToPageBegin(onload){
-			try {
-				_audioElement.muted = true;
-				_audioElement.play();
-				_.delay(function(){
+			_.delay(function(){
+				try {
 					_audioElement.currentTime = _page.pageBegin;
-					_audioElement.pause();
-					_audioElement.muted = false;
-
-					if(_.isFunction(onload)) _.delay(onload, 250, [_page]);
-				}, 1000);
-			} catch(e) {
-				console.log(e);
-			}
+					if(_.isFunction(onload)) 
+						_.delay(onload, 0, [_page]);
+				}
+				catch(e) {
+					_seekErrors++;
+					if(_seekErrors < 5) {
+						console.log("seek re-try: " + _seekErrors);
+						seekToPageBegin(onload);
+					}
+					else {
+						console.log(e);
+					}
+				}
+			}, 1000);
 		}
 
 		function startClipTimer() {
@@ -270,6 +282,7 @@
 			if(_canPlay) {
 				startClipTimer();
 				_audioElement.play();
+				_audioElement.currentTime = _page.pageBegin;
 				//_.defer(function (){
 				//	_audioElement.currentTime = _page.pageBegin; 
 				//});

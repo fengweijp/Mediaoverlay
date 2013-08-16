@@ -31,11 +31,6 @@
 	}
 	
 	function playerStateChanged(state, stateObj) {
-		//if(state.indexOf("clip") === 0) 
-		//	console.log(state + " : " + stateObj.elementId);
-		//else 
-		//	console.log(state + " : " + stateObj.pageUrl);
-			
 		if(state == "page_end")
 			endPlaying();
 	}
@@ -68,7 +63,8 @@
 		promise.done(function(smilPageXml){
 			var page = Mediaoverlay.parseSmil(smilPageXml);
 			
-			_tracker.initialize(page);
+			if(_tracker.initialize)
+				_tracker.initialize(page);
 			
 			Mediaoverlay.player.initialize(page, function(){ // onready
 				endSpinning();
@@ -104,5 +100,5 @@
 		initBook: initBook,
 		initPage: initPage
 	};
-}(Player || {}, Tracker, $, _));
+}(Player || {}, Tracker || {}, $, _));
 
