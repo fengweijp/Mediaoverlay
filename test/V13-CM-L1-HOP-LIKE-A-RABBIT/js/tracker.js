@@ -53,42 +53,29 @@ var Tracker = (function(tracker, jquery, underscore){
 			});
 		});
 
-		var el = $("body").get(0);
-		
-		el.addEventListener("touchstart", function(e){
-			console.log("touchstart");
-			var ret = countElement(e.target);
-			if( ret && navigator.userAgent.match(/Android/i) ) {
-				e.preventDefault();
-			}			
-		}, false);
+		var element = $(".page").get(0);
 
-		el.addEventListener("touchmove", function(e){
-			console.log("touchmove");
-			var ret = countElement(e.target);
-			if( ret && navigator.userAgent.match(/Android/i) ) {
-				e.preventDefault();
-			}			
-				
-		}, false);
-
-		el.addEventListener("touchend", function(e){
-			console.log("touchend");
-			var ret = countElement(e.target);
-			if( ret && navigator.userAgent.match(/Android/i) ) {
-				e.preventDefault();
-			}			
-		}, false);
-		
-		el.addEventListener("mousedown", function(e){
-			console.log("mousedown");
-			countElement(e.target);
-		}, false);
-
-		el.addEventListener("mousemove", function(e){
-			console.log("mousemove");
-			countElement(e.target);
-		}, false);
+		if ('ontouchstart' in document.documentElement) {
+			_.each(["touchstart", "touchmove", "touchend", "touchcancel"], function(evt) {
+				element.addEventListener(evt, function(e){
+					var el = document.elementFromPoint(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
+					console.log(evt);
+					console.log(el);
+					countElement(el)
+					if(Mediaoverlay.player.isPlaying())
+						e.preventDefault();
+				}, false);
+			});
+		}
+		else {
+			_.each(["mousedown", "mousemove"], function(evt) {
+				element.addEventListener(evt, function(e){
+					console.log(evt);
+					console.log(e.target);
+					countElement(e.target)
+				}, false);
+			});
+		}
 	}
 	
 	return {
