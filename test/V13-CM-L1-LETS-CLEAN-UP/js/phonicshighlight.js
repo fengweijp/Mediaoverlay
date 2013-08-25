@@ -17,10 +17,12 @@ var PhonicsHighlight = (function(phonicsHighlight, jquery, underscore){
 	}
 	
 	function initialize(){
-		$("span").click(function(){
-			if(!Mediaoverlay.player.isPlaying())
-				highlight();
-		});  
+		if(Mediaoverlay.getURLParam("phonics")) {
+			$("span").click(function(){
+				if(!Mediaoverlay.player.isPlaying())
+					highlight();
+			});
+		}
 	}
 	
 	

@@ -1,7 +1,8 @@
-﻿var Player = (function(player, jquery, underscore){
+﻿var Player = (function(player, tracker, jquery, underscore){
 	var $ = jquery;
 	var _ = underscore;
 	var _spinner = null;
+	var _tracker = tracker;
 	
 	// spinning
 	function startSpinning(){
@@ -30,11 +31,6 @@
 	}
 	
 	function playerStateChanged(state, stateObj) {
-		//if(state.indexOf("clip") === 0) 
-		//	console.log(state + " : " + stateObj.elementId);
-		//else 
-		//	console.log(state + " : " + stateObj.pageUrl);
-			
 		if(state == "page_end")
 			endPlaying();
 	}
@@ -64,9 +60,13 @@
 		
 		var promise = $.get(pageSmil);
 		
-		promise.done(function(smilPage){
-			var page = Mediaoverlay.parseSmil(smilPage);
-			Mediaoverlay.player.initialize(page, function(){ // onload
+		promise.done(function(smilPageXml){
+			var page = Mediaoverlay.parseSmil(smilPageXml);
+			
+			if(_tracker.initialize)
+				_tracker.initialize(page);
+			
+			Mediaoverlay.player.initialize(page, function(){ // onready
 				endSpinning();
 				Mediaoverlay.player.onStateChanged(playerStateChanged);
 				initPlayButton();
@@ -100,5 +100,5 @@
 		initBook: initBook,
 		initPage: initPage
 	};
-}(Player || {}, $, _));
+}(Player || {}, Tracker || {}, $, _));
 

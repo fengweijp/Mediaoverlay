@@ -1,5 +1,5 @@
 <smil xmlns="http://www.w3.org/ns/SMIL" xmlns:epub="http://www.idpf.org/2007/ops" version="3.0">
-<body epub:textref="pg01.html" activeclass="mediaoverlay-active" src="audio/V13-CM-L1-LETS-CLEAN-UP.mp3" clipBegin="9.102" clipEnd="40.227">
+<body epub:textref="pg01.html" activeclass="mediaoverlay-active" src="audio/V13-CM-L1-LETS-CLEAN-UP.mp3" clipBegin="9.102" clipEnd="53.805">
 	<par>
 		<text src="pg01.html#chunk01"/>
 		<audio clipBegin="9.102041" clipEnd="9.950113"/>
@@ -123,6 +123,91 @@
 	<par>
 		<text src="pg01.html#chunk04"/>
 		<audio clipBegin="38.82993" clipEnd="40.22676"/>
+	</par>
+
+	<par>
+		<text src="pg01.html#chunk05"/>
+		<audio clipBegin="40.20862" clipEnd="40.52608"/>
+	</par>
+
+	<par>
+		<text src="pg01.html#chunk06"/>
+		<audio clipBegin="40.51701" clipEnd="40.93424"/>
+	</par>
+
+	<par>
+		<text src="pg01.html#chunk07"/>
+		<audio clipBegin="40.97052" clipEnd="41.45125"/>
+	</par>
+
+	<par>
+		<text src="pg01.html#chunk08"/>
+		<audio clipBegin="41.46032" clipEnd="42.24943"/>
+	</par>
+
+	<par>
+		<text src="pg01.html#chunk09"/>
+		<audio clipBegin="42.24036" clipEnd="42.7483"/>
+	</par>
+
+	<par>
+		<text src="pg01.html#chunk10"/>
+		<audio clipBegin="42.73016" clipEnd="43.23809"/>
+	</par>
+
+	<par>
+		<text src="pg01.html#chunk11"/>
+		<audio clipBegin="43.23809" clipEnd="44.30839"/>
+	</par>
+
+	<par>
+		<text src="pg01.html#chunk12"/>
+		<audio clipBegin="44.36281" clipEnd="44.92517"/>
+	</par>
+
+	<par>
+		<text src="pg01.html#chunk13"/>
+		<audio clipBegin="44.95238" clipEnd="45.46939"/>
+	</par>
+
+	<par>
+		<text src="pg01.html#chunk14"/>
+		<audio clipBegin="45.4966" clipEnd="46.89342"/>
+	</par>
+
+	<par>
+		<text src="pg01.html#chunk15"/>
+		<audio clipBegin="46.89342" clipEnd="47.70068"/>
+	</par>
+
+	<par>
+		<text src="pg01.html#chunk16"/>
+		<audio clipBegin="47.68254" clipEnd="49.29705"/>
+	</par>
+
+	<par>
+		<text src="pg01.html#chunk17"/>
+		<audio clipBegin="49.26077" clipEnd="50.47619"/>
+	</par>
+
+	<par>
+		<text src="pg01.html#chunk18"/>
+		<audio clipBegin="50.45805" clipEnd="51.02041"/>
+	</par>
+
+	<par>
+		<text src="pg01.html#chunk19"/>
+		<audio clipBegin="50.9932" clipEnd="51.53741"/>
+	</par>
+
+	<par>
+		<text src="pg01.html#chunk20"/>
+		<audio clipBegin="51.52834" clipEnd="52.11791"/>
+	</par>
+
+	<par>
+		<text src="pg01.html#chunk21"/>
+		<audio clipBegin="52.0907" clipEnd="53.80499"/>
 	</par>
 
 </body>
